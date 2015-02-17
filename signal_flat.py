@@ -1,13 +1,10 @@
 #!/usr/bin/env python
 
-#read in file line by line
-#store file into array
+#take in some 2-D matrix and look for the 10khz signal
 
-#pick out time stamps pick (fix time stamps)
-
-#pull in power into 2D array
-
-#find the singal
+#FFT samples = N-bins (call by core)
+#FFT bins = N-bins/2 
+#find the singal  FreqRez = Fsample / FFT samples    TimeRez = (FFTs/Fs)*averages
 
 #modify data
 
