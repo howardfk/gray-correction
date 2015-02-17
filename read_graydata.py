@@ -22,20 +22,20 @@ def howlongisfile(file_in):
       else:
          return i[0]
 
-#read in line by line
+#read in graydata line by line
 def datatoarray(pathToData, sampleFreq, binNum, fftAvg):
    filelength = howlongisfile(pathToData)
    data_array = np.zeros(filelength)
-   print data_array.size
    with open(pathToData,'r') as f:
       data_array = f.readlines()
-   print 'first ', data_array[0]
-   print 'second ', data_array[1]
    return data_array
 
 def converttomatrix(pathToData, sampleFreq, binNum, fftAvg):
    data_array = datatoarray(pathToData, sampleFreq, binNum, fftAvg)
-   datatoarray(pathToData, sampleFreq, binNum, fftAvg)
+   num_spectra = np.size(data_array)*2/binNum
+   print "number of spectra",num_spectra
+   power_matrix = np.zeros(num_spectra)
+   return data_array
 
 #Store times into array
 #Store power spectra into array
@@ -46,10 +46,14 @@ def converttomatrix(pathToData, sampleFreq, binNum, fftAvg):
 #runing code
 def main():
    sampleFreq = raw_input("Sampiling Freuancy:")
+   sampleFreq = int(sampleFreq)
    binNum = raw_input("Number of Bins for the FFT: ")
+   binNum = int(binNum)
    fftAvg = raw_input("Number of averging for FFT: ")
+   fftAvg = int(fftAvg)
    cwd=pathtodata("20140611-223001-SPS.data.2.5MHz.data.021925.avg4096.graydata")
-   data_array = datatoarray(cwd, sampleFreq, binNum, fftAvg)
+   data_array = converttomatrix(cwd, sampleFreq, binNum, fftAvg)
+   #data_array = datatoarray(cwd, sampleFreq, binNum, fftAvg)
    i=0
    for i in range(0,5):
       print data_array[i]
