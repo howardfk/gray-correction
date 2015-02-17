@@ -52,7 +52,7 @@ def main():
    data_array = datatoarray(cwd, sampleFreq, binNum, fftAvg)
    i=0
    for i in range(0,5):
-      print data_array[i*2]
+      print data_array[i]
 
 if __name__ == "__main__":
    main()
