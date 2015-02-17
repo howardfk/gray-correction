@@ -7,6 +7,7 @@
 #find the singal  FreqRez = Fsample / FFT samples    TimeRez = (FFTs/Fs)*averages
 
 
+#find_signal
 def find_signal(ffts, freqs, signal = 100000, binindex ="")
    if binindex =="":
       freqrez = freqs/ffts
@@ -16,12 +17,12 @@ def find_signal(ffts, freqs, signal = 100000, binindex ="")
    else:
       return binindex 
 
+#flatten corrects for a signal that shoudl be fixed at a power (for south pole vlf power = 100 mv)
 def flatten(corection, spec_inx):
    #loop data over one spectra
    #2dmatri[i][j]=2dmatrix[i][j]+correction
    #not sure if spec_inx will be collom or row
 
-#modify data
 
 
 #optamize
