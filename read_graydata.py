@@ -32,12 +32,12 @@ def datatoarray(pathToData, sampleFreq, binNum, fftAvg):
    return data_array
 
 def converttomatrix(pathToData, sampleFreq, binNum, fftAvg):
-   data_array = datatoarray(pathToData, sampleFreq, binNum, fftAvg)
+   data_array = np.array(datatoarray(pathToData, sampleFreq, binNum, fftAvg))
    num_spectra = np.size(data_array)*2/binNum
-   data_matrix = np.zeros((num_spectra,binNum/2))
-   print np.shape(data_array)
-#   print np.vstack(np.hsplit(data_array, num_spectra))
-   return data_matrix 
+   #data_matrix = np.zeros((num_spectra,binNum/2))
+   print len(data_array)/num_spectra, num_spectra
+   data_array.resize(num_spectra,binNum/2+1)
+   return data_array
 
 #Store times into array
 #Store power spectra into array
