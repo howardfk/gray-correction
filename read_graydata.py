@@ -2,6 +2,7 @@
 import os
 import sys
 import numpy as np
+#import signal_flat as sf
 
 #creat path to read file
 def make_path(file_name):
@@ -33,9 +34,10 @@ def datatoarray(pathToData, sampleFreq, binNum, fftAvg):
 def converttomatrix(pathToData, sampleFreq, binNum, fftAvg):
    data_array = datatoarray(pathToData, sampleFreq, binNum, fftAvg)
    num_spectra = np.size(data_array)*2/binNum
-   print "number of spectra",num_spectra
-   power_matrix = np.zeros(num_spectra)
-   return data_array
+   data_matrix = np.zeros((num_spectra,binNum/2))
+   print np.shape(data_array)
+#   print np.vstack(np.hsplit(data_array, num_spectra))
+   return data_matrix 
 
 #Store times into array
 #Store power spectra into array
@@ -45,18 +47,18 @@ def converttomatrix(pathToData, sampleFreq, binNum, fftAvg):
 
 #runing code
 def main():
-   sampleFreq = raw_input("Sampiling Freuancy:")
-   sampleFreq = int(sampleFreq)
-   binNum = raw_input("Number of Bins for the FFT: ")
-   binNum = int(binNum)
-   fftAvg = raw_input("Number of averging for FFT: ")
-   fftAvg = int(fftAvg)
+#  sampleFreq = raw_input("Sampiling Freuancy:")
+#  sampleFreq = int(sampleFreq)
+#  binNum = raw_input("Number of Bins for the FFT: ")
+#  binNum = int(binNum)
+#  fftAvg = raw_input("Number of averging for FFT: ")
+#  fftAvg = int(fftAvg)
+   sampleFreq = 2500000
+   binNum = 4096
+   fftAvg = 85
    cwd=pathtodata("20140611-223001-SPS.data.2.5MHz.data.021925.avg4096.graydata")
    data_array = converttomatrix(cwd, sampleFreq, binNum, fftAvg)
    #data_array = datatoarray(cwd, sampleFreq, binNum, fftAvg)
-   i=0
-   for i in range(0,5):
-      print data_array[i]
 
 if __name__ == "__main__":
    main()
