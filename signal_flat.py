@@ -8,7 +8,7 @@
 
 
 #find_signal
-def find_signal(ffts, freqs, signal = 100000, binindex ="")
+def find_signal(ffts, freqs, signal = 100000, binindex =""):
    if binindex =="":
       freqrez = freqs/ffts
       #write something to check for the correct bin
@@ -17,12 +17,13 @@ def find_signal(ffts, freqs, signal = 100000, binindex ="")
    else:
       return binindex 
 
+def power_lvl(datamatrix,time_ind,bin1,bin2="" ):
+   if bin2 =="":
+      return 100 - datamatrix[time_ind][bin1]
+   else:
+      power = 100 - (datamatrix[time_ind][bin1] + datamatrix[time_ind][bin2])/2
+
 #flatten corrects for a signal that shoudl be fixed at a power (for south pole vlf power = 100 mv)
-def flatten(corection, spec_inx):
-   #loop data over one spectra
-   #2dmatri[i][j]=2dmatrix[i][j]+correction
-   #not sure if spec_inx will be collom or row
-
-
-
-#optamize
+def flatten(datamatrix, time_ind, spec_inx):
+   power = power_var(datamatrix, time_ind, spec_inx)
+   return 100 - power   #add this value to all values in this spectra at time time_ind
